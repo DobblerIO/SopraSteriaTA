@@ -1,0 +1,22 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    color: #FFFFFF;
+    padding: 10px 20px;
+}
+
+.wheater-data-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.wheater-data-container__temperature {
+    font-size: 48px;
+    font-weight: 400;
+}
+
+.wheater-data-container__wheater-type {
+    flex-grow: 1;
+}
