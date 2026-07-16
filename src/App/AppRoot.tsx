@@ -12,6 +12,7 @@ export const AppRoot:FC = () => {
 
     const { data, isPending, isRefetching } = useQuery({
         queryKey: ['weather-data'],
+        throwOnError: true,
         queryFn: async () => fetchForecast({
             location: 'Amsterdam',
             timesteps: ['hourly', 'daily'],

@@ -34,6 +34,7 @@ export async function fetchForecast(options: ForecastOptions): Promise<WeatherDa
     await (new Promise((res) => {
         window.setTimeout(res, 1000);
     }))
+
     return transformWeatherData(mockData);
 
     const {
