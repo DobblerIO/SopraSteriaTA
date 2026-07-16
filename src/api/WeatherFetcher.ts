@@ -30,12 +30,11 @@ export interface ForecastOptions {
 
 export async function fetchForecast(options: ForecastOptions): Promise<WeatherData> {
 
-    console.log(mockData);
-    await (new Promise((res) => {
-        window.setTimeout(res, 1000);
-    }))
+    // await (new Promise((res) => {
+    //     window.setTimeout(res, 1000);
+    // }))
 
-    return transformWeatherData(mockData);
+    // return transformWeatherData(mockData);
 
     const {
         location = 'Amsterdam',
