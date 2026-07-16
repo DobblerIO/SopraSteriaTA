@@ -36,15 +36,21 @@ export const CurrentTimeData: FC<CurrentTimeDataProps> = props => {
     return (
         <div className={styles.container}>
             
-            <div>{formattedDate}</div>
-            <div>{location}</div>
+            <div data-testid="current-date" >{formattedDate}</div>
+            <div data-testid="current-location" >{location}</div>
 
             <div className={styles['wheater-data-container']} >
-                <div className={styles['wheater-data-container__temperature']} >
+                <div
+                    className={styles['wheater-data-container__temperature']}
+                    data-testid="current-temperature"
+                >
                     {`${Math.round(temperature)}°`}
                 </div>
                 
-                <div className={styles['wheater-data-container__wheater-type']}>
+                <div
+                    className={styles['wheater-data-container__wheater-type']}
+                    data-testid="current-weather-type"
+                >
                     {wheaterType}
                 </div>
 
