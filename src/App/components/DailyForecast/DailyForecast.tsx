@@ -2,7 +2,7 @@ import type { FC } from "react";
 import { DayPreview } from "./DayPreview";
 
 import styles from './DailyForecast.module.css';
-import type { WeatherType } from "../../../api/WeatherCodeConversion";
+import type { WeatherType } from "../../../api/DataTransformation/WeatherCodeConversion";
 
 interface DailyForecastProps {
     data: Array<{

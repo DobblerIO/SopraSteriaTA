@@ -5,27 +5,17 @@ import styles from './AppRoot.module.css';
 import { DailyForecast } from "./components/DailyForecast";
 import { CurrentTimeData } from "./components/CurrentTimeData";
 import { mockData } from "../api/MockData";
-import { convertWeatherCode } from "../api/WeatherCodeConversion";
+import { convertWeatherCode } from "../api/DataTransformation/WeatherCodeConversion";
+import { transformWeatherData } from "../api/DataTransformation/WeatherDataTransformer";
 
-const mockForecastData = mockData.timelines.daily.map(dayData => ({
-    date: dayData.time,
-    wheaterType: convertWeatherCode(dayData.values.weatherCodeAvg as number),
-    temperature: dayData.values.temperatureApparentAvg as number,
-}));
-
-const mockCurrentData = {
-    location: mockData.location.name,
-    date: mockData.timelines.daily[0].time,
-    temperature: mockData.timelines.daily[0].values.temperatureAvg as number,
-    wheaterType: convertWeatherCode(mockData.timelines.daily[0].values.weatherCodeAvg as number),
-};
+const data = transformWeatherData(mockData);
 
 export const AppRoot:FC = () => {
     
     return (
         <div className={ styles.container} >
-            <CurrentTimeData data={mockCurrentData} />
-            <DailyForecast data={mockForecastData} />
+            <CurrentTimeData data={data.currentTimeData} />
+            <DailyForecast data={data.dailyForecastData} />
         </div>
     );
 }

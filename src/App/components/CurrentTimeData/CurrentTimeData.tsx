@@ -1,7 +1,7 @@
 import type { FC } from "react";
 
 import styles from './CurrentTimeData.module.css';
-import type { WeatherType } from "../../../api/WeatherCodeConversion";
+import type { WeatherType } from "../../../api/DataTransformation/WeatherCodeConversion";
 import { weatherTypeIconMap } from "../Icons/WeatherTypeIconMap";
 
 interface CurrentTimeDataProps {

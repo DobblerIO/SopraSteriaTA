@@ -2,7 +2,7 @@ import type { FC } from "react";
 
 import styles from './DayPreview.module.css';
 import { weatherTypeIconMap } from "../../Icons/WeatherTypeIconMap";
-import type { WeatherType } from "../../../../api/WeatherCodeConversion";
+import type { WeatherType } from "../../../../api/DataTransformation/WeatherCodeConversion";
 
 interface DayPreviewProps {
     date: string;

@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import type { WeatherType } from "../../../api/WeatherCodeConversion";
+import type { WeatherType } from "../../../api/DataTransformation/WeatherCodeConversion";
 import { CloudIcon } from "./CloudIcon";
 import { CloudDrizzleIcon } from "./CloudDrizzleIcon";
 import { CloudFogIcon } from "./CloudFogIcon";
