@@ -7,17 +7,26 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchForecast } from "../api/WeatherFetcher";
 import { RefetchingStatus } from "./components/RefetchingStatus";
 import { OptionsMenu } from "./components/OptionsMenu";
+import { SettingsMenu } from "./components/SettingsMenu";
+import { useViewStore } from "../Stores/ViewStore";
+import { useSettingsStore } from "../Stores/SettingsStore";
 
 export const AppRoot:FC = () => {
 
+    const { activeView } = useViewStore();
+    const { settingsData: {
+        location,
+        unitSystem,
+    } } = useSettingsStore();
+
     const { data, isPending, isRefetching } = useQuery({
-        queryKey: ['weather-data'],
+        queryKey: ['weather-data', location, unitSystem],
         retry: 2,
         throwOnError: true,
         queryFn: async () => fetchForecast({
-            location: 'Amsterdam',
             timesteps: ['hourly', 'daily'],
-            units: 'metric',
+            location,
+            units: unitSystem,
         }),
     });
 
@@ -34,6 +43,8 @@ export const AppRoot:FC = () => {
 
             {isRefetching && <RefetchingStatus />}
             {!isRefetching && <OptionsMenu />}
+
+            {activeView === 'settings' && <SettingsMenu />}
         </div>
     );
 }

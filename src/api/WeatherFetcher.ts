@@ -5,7 +5,6 @@
 import { transformWeatherData } from "./DataTransformation/WeatherDataTransformer";
 import type { WeatherData } from "./DataTransformation/WeatherDataTypes";
 import type { ForecastDataRoot } from "./ForecastData";
-import { mockData } from "./MockData";
 
 export interface ForecastOptions {
 
@@ -33,7 +32,6 @@ export async function fetchForecast(options: ForecastOptions): Promise<WeatherDa
     // await (new Promise((res) => {
     //     window.setTimeout(res, 1000);
     // }))
-
     // return transformWeatherData(mockData);
 
     const {
