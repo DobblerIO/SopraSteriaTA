@@ -1,4 +1,6 @@
-export const mockData = {
+import type { ForecastDataRoot } from "./ForecastData";
+
+export const mockData: ForecastDataRoot = {
     "timelines": {
         "daily": [
             {

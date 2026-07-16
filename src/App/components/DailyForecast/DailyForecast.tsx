@@ -3,17 +3,26 @@ import { DayPreview } from "./DayPreview";
 
 import styles from './DailyForecast.module.css';
 
-export const DailyForecast:FC = () => {
+interface DailyForecastProps {
+    data: Array<{
+        date: string;
+        wheaterType: string;
+        temperature: number;
+    }>;
+}
+
+export const DailyForecast:FC<DailyForecastProps> = props => {
+    const { data } = props;
 
     return (
         <div className={styles.container} >
-            <DayPreview date={"Mon"} wheaterType={"Rainy"} temperature={31} />
-            <DayPreview date={"Mon"} wheaterType={"Rainy"} temperature={31} />
-            <DayPreview date={"Mon"} wheaterType={"Rainy"} temperature={31} />
-            <DayPreview date={"Mon"} wheaterType={"Rainy"} temperature={31} />
-            <DayPreview date={"Mon"} wheaterType={"Rainy"} temperature={31} />
-            <DayPreview date={"Mon"} wheaterType={"Rainy"} temperature={31} />
-            <DayPreview date={"Mon"} wheaterType={"Rainy"} temperature={31} />
+            {data.map(dayData => (
+                <DayPreview
+                    key={dayData.date}
+                    date={dayData.date}
+                    wheaterType={dayData.wheaterType}
+                    temperature={dayData.temperature} />
+            ))}
         </div>
     );
 }

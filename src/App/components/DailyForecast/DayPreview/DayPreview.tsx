@@ -16,11 +16,15 @@ export const DayPreview: FC<DayPreviewProps> = props => {
         temperature,
     } = props;
 
+    const formattedDate = new Intl.DateTimeFormat("en-US", {
+        weekday: "short"
+    }).format(new Date(date));
+
     return (
         <div className={styles.container} >
-            <div>{date}</div>
+            <div>{formattedDate}</div>
             <div><CloudDrizzleIcon/></div>
-            <div>{temperature}</div>
+            <div>{`${Math.round(temperature)}°`}</div>
         </div>
     )
 }

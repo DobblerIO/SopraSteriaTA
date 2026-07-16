@@ -3,17 +3,42 @@ import { CloudDrizzleIcon } from "../Icons/CloudDrizzleIcon";
 
 import styles from './CurrentTimeData.module.css';
 
-export const CurrentTimeData: FC = () => {
+interface CurrentTimeDataProps {
+    data: {
+        date: string;
+        location: string;
+        temperature: number;
+        wheaterType: string;
+    }
+}
+
+export const CurrentTimeData: FC<CurrentTimeDataProps> = props => {
+
+    const {
+        data: {
+            date,
+            location,
+            temperature,
+            wheaterType,
+        }
+    } = props;
+
+    const formattedDate = new Intl.DateTimeFormat('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: '2-digit',
+        year: 'numeric'
+      }).format(new Date(date));
 
     return (
         <div className={styles.container}>
             
-            <div>Thu Jul 15 2026</div>
-            <div>Amsterdam</div>
+            <div>{formattedDate}</div>
+            <div>{location}</div>
 
             <div className={styles['wheater-data-container']} >
                 <div className={styles['wheater-data-container__temperature']} >
-                    33°
+                    {`${Math.round(temperature)}°`}
                 </div>
                 
                 <div className={styles['wheater-data-container__wheater-type']}>

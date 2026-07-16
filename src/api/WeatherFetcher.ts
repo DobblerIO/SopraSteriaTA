@@ -2,6 +2,7 @@
  * Relevant api docs: https://docs.tomorrow.io/reference/weather-forecast
  */
 
+import type { ForecastDataRoot } from "./ForecastData";
 import { mockData } from "./MockData";
 
 export interface ForecastOptions {
@@ -25,8 +26,9 @@ export interface ForecastOptions {
     units: 'imperial' | 'metric';
 }
 
-export async function fetchForecast(options: ForecastOptions) {
+export async function fetchForecast(options: ForecastOptions): Promise<ForecastDataRoot> {
 
+    console.log(mockData);
     return mockData;
 
     const {
