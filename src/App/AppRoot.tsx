@@ -1,16 +1,25 @@
 import type { FC } from "react";
-import { fetchForecast } from "../api/WeatherFetcher";
 
 import styles from './AppRoot.module.css';
 import { DailyForecast } from "./components/DailyForecast";
 import { CurrentTimeData } from "./components/CurrentTimeData";
-import { mockData } from "../api/MockData";
-import { convertWeatherCode } from "../api/DataTransformation/WeatherCodeConversion";
-import { transformWeatherData } from "../api/DataTransformation/WeatherDataTransformer";
-
-const data = transformWeatherData(mockData);
+import { useQuery } from "@tanstack/react-query";
+import { fetchForecast } from "../api/WeatherFetcher";
 
 export const AppRoot:FC = () => {
+
+    const { data, isPending } = useQuery({
+        queryKey: ['weather-data'],
+        queryFn: async () => fetchForecast({
+            location: 'Amsterdam',
+            timesteps: ['hourly', 'daily'],
+            units: 'metric',
+        }),
+    });
+
+    if (!data || isPending) {
+        return 'Loading...';
+    }
     
     return (
         <div className={ styles.container} >

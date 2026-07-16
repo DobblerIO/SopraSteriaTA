@@ -2,6 +2,8 @@
  * Relevant api docs: https://docs.tomorrow.io/reference/weather-forecast
  */
 
+import { transformWeatherData } from "./DataTransformation/WeatherDataTransformer";
+import type { WeatherData } from "./DataTransformation/WeatherDataTypes";
 import type { ForecastDataRoot } from "./ForecastData";
 import { mockData } from "./MockData";
 
@@ -18,7 +20,7 @@ export interface ForecastOptions {
     /**
      * Timesteps includes: hourly: "1h", daily: "1d"
      */
-    timesteps: string[];
+    timesteps: ('hourly' | 'daily')[];
 
     /**
      * Unit system
@@ -26,10 +28,10 @@ export interface ForecastOptions {
     units: 'imperial' | 'metric';
 }
 
-export async function fetchForecast(options: ForecastOptions): Promise<ForecastDataRoot> {
+export async function fetchForecast(options: ForecastOptions): Promise<WeatherData> {
 
     console.log(mockData);
-    return mockData;
+    return transformWeatherData(mockData);
 
     const {
         location = 'Amsterdam',
@@ -55,8 +57,8 @@ export async function fetchForecast(options: ForecastOptions): Promise<ForecastD
         }
     })
 
-    const json = await response.json();
+    const json = await response.json() as ForecastDataRoot;
 
-    return json;
+    return transformWeatherData(json);
 
 }
