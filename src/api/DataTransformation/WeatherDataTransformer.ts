@@ -8,12 +8,12 @@ export function transformWeatherData(responseData: ForecastDataRoot): WeatherDat
         location: responseData.location.name,
         date: responseData.timelines.daily[0].time,
         temperature: responseData.timelines.daily[0].values.temperatureAvg as number,
-        wheaterType: convertWeatherCode(responseData.timelines.daily[0].values.weatherCodeAvg as number),
+        wheaterType: convertWeatherCode(responseData.timelines.daily[0].values.weatherCodeMax as number),
     };
 
     const dailyForecastData = responseData.timelines.daily.map(dayData => ({
         date: dayData.time,
-        wheaterType: convertWeatherCode(dayData.values.weatherCodeAvg as number),
+        wheaterType: convertWeatherCode(dayData.values.weatherCodeMax as number),
         temperature: dayData.values.temperatureApparentAvg as number,
     }))
 

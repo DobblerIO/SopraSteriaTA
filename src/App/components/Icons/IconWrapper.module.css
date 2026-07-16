@@ -4,5 +4,5 @@
 }
 
 .container svg {
-    transform: scale(2) translateY(-5%);
+    transform: scale(2);
 }
