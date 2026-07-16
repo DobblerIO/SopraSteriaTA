@@ -1,0 +1,24 @@
+.container {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.open-options-menu-button {
+    cursor: pointer;
+    background: none;
+    padding: 10px;
+    border: none;
+}
+
+.options-menu {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border-radius: 4px;
+    overflow: hidden;
+}

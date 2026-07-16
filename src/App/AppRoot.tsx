@@ -6,6 +6,7 @@ import { CurrentTimeData } from "./components/CurrentTimeData";
 import { useQuery } from "@tanstack/react-query";
 import { fetchForecast } from "../api/WeatherFetcher";
 import { RefetchingStatus } from "./components/RefetchingStatus";
+import { OptionsMenu } from "./components/OptionsMenu";
 
 export const AppRoot:FC = () => {
 
@@ -19,15 +20,18 @@ export const AppRoot:FC = () => {
     });
 
     if (!data || isPending) {
-        return 'Loading...';
+        return (
+            <div className={ styles.container } >Loading...</div>
+        )
     }
     
     return (
-        <div className={ styles.container} >
+        <div className={ styles.container } >
             <CurrentTimeData data={data.currentTimeData} />
             <DailyForecast data={data.dailyForecastData} />
 
             {isRefetching && <RefetchingStatus />}
+            {!isRefetching && <OptionsMenu />}
         </div>
     );
 }
