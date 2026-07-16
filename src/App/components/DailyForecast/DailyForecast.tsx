@@ -2,11 +2,12 @@ import type { FC } from "react";
 import { DayPreview } from "./DayPreview";
 
 import styles from './DailyForecast.module.css';
+import type { WeatherType } from "../../../api/WeatherCodeConversion";
 
 interface DailyForecastProps {
     data: Array<{
         date: string;
-        wheaterType: string;
+        wheaterType: WeatherType;
         temperature: number;
     }>;
 }

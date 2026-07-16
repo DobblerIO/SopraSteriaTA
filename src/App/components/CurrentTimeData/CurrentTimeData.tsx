@@ -1,14 +1,15 @@
 import type { FC } from "react";
-import { CloudDrizzleIcon } from "../Icons/CloudDrizzleIcon";
 
 import styles from './CurrentTimeData.module.css';
+import type { WeatherType } from "../../../api/WeatherCodeConversion";
+import { weatherTypeIconMap } from "../Icons/WeatherTypeIconMap";
 
 interface CurrentTimeDataProps {
     data: {
         date: string;
         location: string;
         temperature: number;
-        wheaterType: string;
+        wheaterType: WeatherType;
     }
 }
 
@@ -28,7 +29,9 @@ export const CurrentTimeData: FC<CurrentTimeDataProps> = props => {
         month: 'short',
         day: '2-digit',
         year: 'numeric'
-      }).format(new Date(date));
+    }).format(new Date(date));
+
+    const WeatherTypeIcon = weatherTypeIconMap[wheaterType];
 
     return (
         <div className={styles.container}>
@@ -42,11 +45,11 @@ export const CurrentTimeData: FC<CurrentTimeDataProps> = props => {
                 </div>
                 
                 <div className={styles['wheater-data-container__wheater-type']}>
-                    Rainy
+                    {wheaterType}
                 </div>
 
                 <div>
-                    <CloudDrizzleIcon />
+                    <WeatherTypeIcon />
                 </div>
             </div>
 
